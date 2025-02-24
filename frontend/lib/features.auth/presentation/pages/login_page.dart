@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:soul_app/core/theme.dart';
 import 'package:soul_app/features.auth/presentation/widgets/auth_button.dart';
-import 'dart:developer';
 
 import 'package:soul_app/features.auth/presentation/widgets/auth_input_field.dart';
+import 'package:soul_app/features.auth/presentation/widgets/login_prompt.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -48,24 +47,26 @@ class _LoginPageState extends State<LoginPage> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 15),
-              _buildTextInput(
-                context,
-                'Email',
-                Icons.email,
-                _emailController,
+              AuthInputField(
+                hint: 'Email',
+                icon: Icons.email,
+                controller: _emailController,
               ),
               SizedBox(height: 20),
-              _buildTextInput(
-                context,
-                'Password',
-                Icons.password,
-                _passwordController,
+              AuthInputField(
+                hint: 'Password',
+                icon: Icons.password,
+                controller: _passwordController,
                 isPassword: true,
               ),
               SizedBox(height: 20),
-              _buildLoginButton(context),
+              AuthButton(text: 'Login', onPressed: _onLoginTapped),
               SizedBox(height: 20),
-              _buildRegisterPrompt(context)
+              LoginPrompt(
+                title: "Don't have an account? ",
+                subtitle: "Sign up here",
+                onLogin: _onLoginTapped,
+              )
             ],
           ),
         ),
@@ -83,50 +84,5 @@ class _LoginPageState extends State<LoginPage> {
     };
 
     print(payloadLogin);
-  }
-
-  Widget _buildTextInput(
-      context, String hint, IconData icon, TextEditingController controller,
-      {bool isPassword = false}) {
-    return AuthInputField(
-        hint: hint, icon: icon, controller: controller, isPassword: isPassword);
-  }
-
-  Widget _buildLoginButton(context) {
-    // return ElevatedButton(
-    //   onPressed: _onLoginTapped,
-    //   style: ElevatedButton.styleFrom(
-    //       backgroundColor: DefaultColors.buttonColor,
-    //       shape:
-    //           RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-    //       padding: EdgeInsets.symmetric(vertical: 14)),
-    //   child: Text(
-    //     'Login',
-    //     style: TextStyle(color: Colors.grey),
-    //   ),
-    // );
-    return AuthButton(text: 'Login', onPressed: _onLoginTapped);
-  }
-
-  Widget _buildRegisterPrompt(context) {
-    return Center(
-      child: GestureDetector(
-        onTap: () {
-          log('Login Tapped!');
-        },
-        child: RichText(
-          text: TextSpan(
-              text: "Don't have an account? ",
-              style: TextStyle(
-                color: Colors.grey,
-              ),
-              children: [
-                TextSpan(
-                    text: "Sign up here",
-                    style: TextStyle(color: Colors.blueAccent))
-              ]),
-        ),
-      ),
-    );
   }
 }

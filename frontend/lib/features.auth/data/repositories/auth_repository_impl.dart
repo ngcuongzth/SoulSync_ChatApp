@@ -5,7 +5,9 @@ import 'package:soul_app/features.auth/domain/repositories/auth_respository.dart
 class AuthRepositoryImpl implements AuthRespository {
   final AuthRemoteDataSource authRemoteDataSource;
 
-  AuthRepositoryImpl({required this.authRemoteDataSource});
+  AuthRepositoryImpl(
+      {required this.authRemoteDataSource,
+      required AuthRemoteDataSource AuthRemoteDataSource});
 
   @override
   Future<UserEntity> login(String email, String password) async {
