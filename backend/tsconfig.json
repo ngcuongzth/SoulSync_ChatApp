@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "CommonJS",
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true, // Cho phép import file JSON
+        "skipLibCheck": true, // Bỏ qua kiểm tra các file .d.ts (tăng tốc biên dịch)
+        "forceConsistentCasingInFileNames": true // Đảm bảo phân biệt chữ hoa/thường trên tất cả file
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
